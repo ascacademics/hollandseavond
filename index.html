@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; connect-src https://submit-form.com; font-src 'self' https://use.typekit.net; form-action https://submit-form.com; frame-src https://challenges.cloudflare.com; img-src 'self'; object-src 'none'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' https://use.typekit.net https://p.typekit.net; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hollandse Avond at ISPOR 2026 | Asc Academics</title>
   <meta name="description" content="Register for the Hollandse Avond with Asc Academics and the Dutch HEOR community at ISPOR 2026.">
@@ -15,8 +17,8 @@
   <link rel="preconnect" href="https://use.typekit.net">
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/dhm8kbq.css">
-  <link rel="stylesheet" href="styles.css?v=6">
-  <script src="script.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=8">
+  <script src="script.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -74,24 +76,31 @@
           <h2 class="registration-title" id="registration-title">Event registration</h2>
           <p class="card-introduction">Please share your details to register for the event.</p>
 
-          <form id="registration-form" novalidate>
+          <form id="registration-form" action="https://submit-form.com/HiTUWLPwb" method="post" novalidate>
+            <div class="form-field form-field--honeypot" aria-hidden="true">
+              <label for="registration-website">Leave this field empty</label>
+              <input id="registration-website" name="_honeypot" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="form-field">
               <label for="name">Full name</label>
-              <input id="name" name="name" type="text" autocomplete="name" spellcheck="false" required>
+              <input id="name" name="name" type="text" autocomplete="name" spellcheck="false" maxlength="120" required>
               <p class="field-error" id="name-error"></p>
             </div>
 
             <div class="form-field">
               <label for="company">Company / organisation</label>
-              <input id="company" name="company" type="text" autocomplete="organization" required>
+              <input id="company" name="company" type="text" autocomplete="organization" maxlength="160" required>
               <p class="field-error" id="company-error"></p>
             </div>
 
             <div class="form-field">
               <label for="email">Email address</label>
-              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required>
               <p class="field-error" id="email-error"></p>
             </div>
+
+            <div class="turnstile-field" id="turnstile-container" hidden></div>
 
             <button class="register-button" type="submit">
               Register

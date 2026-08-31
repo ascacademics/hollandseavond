@@ -1,15 +1,20 @@
-const FORM_ENDPOINT = "https://submit-form.com/HiTUWLPwb";
-
 const form = document.querySelector("#registration-form");
+const FORM_ENDPOINT = form.action;
+const TURNSTILE_SITE_KEY = "0x4AAAAAAEjKUsDVsmkEpE3R";
+const TURNSTILE_SCRIPT_URL = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 const submitButton = form.querySelector('button[type="submit"]');
 const statusRegion = document.querySelector("#form-status");
+const turnstileContainer = document.querySelector("#turnstile-container");
 const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#primary-navigation");
 const year = document.querySelector("#current-year");
 const endpointIsConfigured = /^https:\/\/submit-form\.com\/[A-Za-z0-9_-]+\/?$/.test(FORM_ENDPOINT);
+const turnstileIsConfigured = TURNSTILE_SITE_KEY.trim() !== "";
 
 let isSubmitting = false;
 let lastFocusedElement = null;
+let turnstileToken = "";
+let turnstileWidgetId = null;
 
 year.textContent = new Date().getFullYear().toString();
 
@@ -57,6 +62,52 @@ fields.forEach(({ input, message }) => {
   });
 });
 
+function initialiseTurnstile() {
+  if (!turnstileIsConfigured) {
+    return;
+  }
+
+  turnstileContainer.hidden = false;
+
+  const script = document.createElement("script");
+  script.src = TURNSTILE_SCRIPT_URL;
+  script.async = true;
+  script.defer = true;
+
+  script.addEventListener("load", () => {
+    if (!window.turnstile) {
+      statusRegion.textContent = "We could not load the bot protection check. Please try again.";
+      return;
+    }
+
+    turnstileWidgetId = window.turnstile.render(turnstileContainer, {
+      sitekey: TURNSTILE_SITE_KEY,
+      action: "registration",
+      theme: "light",
+      size: "flexible",
+      callback: (token) => {
+        turnstileToken = token;
+        statusRegion.textContent = "";
+      },
+      "expired-callback": () => {
+        turnstileToken = "";
+      },
+      "error-callback": () => {
+        turnstileToken = "";
+        statusRegion.textContent = "We could not load the bot protection check. Please try again.";
+      }
+    });
+  });
+
+  script.addEventListener("error", () => {
+    statusRegion.textContent = "We could not load the bot protection check. Please try again.";
+  });
+
+  document.head.append(script);
+}
+
+initialiseTurnstile();
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -70,6 +121,12 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (turnstileIsConfigured && !turnstileToken) {
+    statusRegion.classList.remove("is-success");
+    statusRegion.textContent = "Please complete the bot protection check.";
+    return;
+  }
+
   isSubmitting = true;
   submitButton.disabled = true;
   submitButton.firstChild.textContent = "Registering… ";
@@ -79,8 +136,13 @@ form.addEventListener("submit", async (event) => {
   const payload = {
     name: form.elements.name.value.trim(),
     company: form.elements.company.value.trim(),
-    email: form.elements.email.value.trim()
+    email: form.elements.email.value.trim(),
+    _honeypot: form.elements._honeypot.value
   };
+
+  if (turnstileIsConfigured) {
+    payload["cf-turnstile-response"] = turnstileToken;
+  }
 
   try {
     const response = await fetch(FORM_ENDPOINT, {
@@ -106,6 +168,11 @@ form.addEventListener("submit", async (event) => {
     submitButton.disabled = false;
     submitButton.firstChild.textContent = "Register ";
     isSubmitting = false;
+
+    if (turnstileIsConfigured && turnstileWidgetId !== null) {
+      turnstileToken = "";
+      window.turnstile.reset(turnstileWidgetId);
+    }
   }
 });
 
