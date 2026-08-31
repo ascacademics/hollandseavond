@@ -203,8 +203,7 @@ main {
   padding-top: 24px;
 }
 
-.eyebrow,
-.card-kicker {
+.eyebrow {
   margin: 0 0 1rem;
   color: var(--asc-coral);
   font-weight: 700;
@@ -216,10 +215,6 @@ main {
   color: var(--white);
   font-size: 2rem;
   line-height: 1.1;
-}
-
-.card-kicker {
-  color: var(--asc-blue-deep);
 }
 
 .accent-text {
@@ -291,12 +286,14 @@ h1 {
   content: "";
 }
 
-.registration-card h2 {
-  margin-bottom: 0.65rem;
-  color: var(--asc-blue);
-  font-family: var(--display-font);
-  font-size: clamp(2.1rem, 3vw, 3rem);
-  line-height: 1;
+.registration-title {
+  margin: 0 0 0.55rem;
+  color: var(--asc-blue-deep);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  text-transform: uppercase;
 }
 
 .card-introduction {
@@ -365,6 +362,20 @@ h1 {
 .register-button:disabled {
   cursor: wait;
   opacity: 0.68;
+}
+
+.button-arrow {
+  display: inline-flex;
+  width: 1.25rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+}
+
+.button-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
 .form-status {
@@ -502,12 +513,8 @@ h1 {
     padding: 2rem 3rem 1.8rem;
   }
 
-  .card-kicker {
-    margin-bottom: 0.6rem;
-  }
-
-  .registration-card h2 {
-    margin-bottom: 0.45rem;
+  .registration-title {
+    margin-bottom: 0.4rem;
   }
 
   .card-introduction {
@@ -562,12 +569,8 @@ h1 {
     padding: 1.25rem 2.5rem 1rem;
   }
 
-  .card-kicker {
-    margin-bottom: 0.3rem;
-  }
-
-  .registration-card h2 {
-    margin-bottom: 0.3rem;
+  .registration-title {
+    margin-bottom: 0.25rem;
   }
 
   .card-introduction {
