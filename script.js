@@ -14,8 +14,8 @@ let lastFocusedElement = null;
 year.textContent = new Date().getFullYear().toString();
 
 const fields = [
-  { input: form.elements.name, message: "Enter your name." },
-  { input: form.elements.company, message: "Enter your company." },
+  { input: form.elements.name, message: "Enter your full name." },
+  { input: form.elements.company, message: "Enter your company or organisation." },
   { input: form.elements.email, message: "Enter a valid email address." }
 ];
 
