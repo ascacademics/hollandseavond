@@ -1,4 +1,4 @@
-const FORM_ENDPOINT = "REPLACE_WITH_FORMSPARK_ENDPOINT";
+const FORM_ENDPOINT = "https://submit-form.com/HiTUWLPwb";
 
 const form = document.querySelector("#registration-form");
 const submitButton = form.querySelector('button[type="submit"]');
