@@ -305,6 +305,14 @@ h1 {
   margin-bottom: 1.25rem;
 }
 
+.form-field--honeypot {
+  display: none;
+}
+
+.turnstile-field {
+  margin-bottom: 1.25rem;
+}
+
 .form-field label {
   display: block;
   margin-bottom: 0.45rem;
