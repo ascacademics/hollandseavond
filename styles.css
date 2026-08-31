@@ -374,6 +374,11 @@ h1 {
   font-weight: 700;
 }
 
+.form-status:empty {
+  min-height: 0;
+  margin-top: 0;
+}
+
 .form-status.is-success {
   padding: 1.1rem;
   border-left: 5px solid var(--asc-blue);
@@ -480,6 +485,122 @@ h1 {
   .event-layout {
     grid-template-columns: minmax(0, 1fr) minmax(340px, 430px);
     gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 900px) {
+  .event-layout {
+    padding-top: 28px;
+    padding-bottom: 64px;
+  }
+
+  .event-introduction {
+    padding-top: 8px;
+  }
+
+  .registration-card {
+    padding: 2rem 3rem 1.8rem;
+  }
+
+  .card-kicker {
+    margin-bottom: 0.6rem;
+  }
+
+  .registration-card h2 {
+    margin-bottom: 0.45rem;
+  }
+
+  .card-introduction {
+    margin-bottom: 1rem;
+  }
+
+  .form-field {
+    margin-bottom: 0.65rem;
+  }
+
+  .form-field label {
+    margin-bottom: 0.25rem;
+  }
+
+  .form-field input {
+    min-height: 46px;
+    padding-block: 0.5rem;
+  }
+
+  .field-error {
+    min-height: 1rem;
+    margin-top: 0.15rem;
+    line-height: 1.15;
+  }
+
+  .register-button {
+    min-height: 50px;
+    margin-top: 0;
+    padding-block: 0.65rem;
+  }
+
+  .privacy-note {
+    margin-top: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 720px) {
+  .site-header {
+    height: 96px;
+  }
+
+  .event-layout {
+    padding-top: 16px;
+    padding-bottom: 48px;
+  }
+
+  .event-introduction {
+    padding-top: 0;
+  }
+
+  .registration-card {
+    padding: 1.25rem 2.5rem 1rem;
+  }
+
+  .card-kicker {
+    margin-bottom: 0.3rem;
+  }
+
+  .registration-card h2 {
+    margin-bottom: 0.3rem;
+  }
+
+  .card-introduction {
+    margin-bottom: 0.7rem;
+  }
+
+  .form-field {
+    margin-bottom: 0.4rem;
+  }
+
+  .form-field label {
+    margin-bottom: 0.2rem;
+  }
+
+  .form-field input {
+    min-height: 44px;
+    padding-block: 0.4rem;
+  }
+
+  .field-error {
+    min-height: 0.85rem;
+    margin-top: 0.1rem;
+    line-height: 1;
+  }
+
+  .register-button {
+    min-height: 48px;
+    padding-block: 0.5rem;
+  }
+
+  .privacy-note {
+    margin-top: 0.6rem;
+    line-height: 1.35;
   }
 }
 
