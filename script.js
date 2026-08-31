@@ -138,7 +138,7 @@ menuToggle.addEventListener("click", () => {
 });
 
 navigation.addEventListener("click", (event) => {
-  if (event.target.closest("a") && window.matchMedia("(max-width: 920px)").matches) {
+  if (event.target.closest("a") && window.matchMedia("(max-width: 1023px)").matches) {
     closeMenu({ restoreFocus: false });
   }
 });
@@ -168,7 +168,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-window.matchMedia("(min-width: 921px)").addEventListener("change", (event) => {
+window.matchMedia("(min-width: 1024px)").addEventListener("change", (event) => {
   if (event.matches) {
     closeMenu({ restoreFocus: false });
   }

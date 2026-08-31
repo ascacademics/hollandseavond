@@ -15,8 +15,8 @@
   <link rel="preconnect" href="https://use.typekit.net">
   <link rel="preconnect" href="https://p.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/dhm8kbq.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js?v=2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=2">
+  <script src="script.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -24,7 +24,10 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="https://www.ascacademics.com/" aria-label="Asc Academics home">
-        <img src="assets/asc-academics-logo.svg" alt="Asc Academics" width="185" height="36">
+        <picture>
+          <source media="(min-width: 1024px)" srcset="assets/asc-academics-logo-horizontal.svg">
+          <img src="assets/asc-academics-logo.svg" alt="Asc Academics" width="185" height="36">
+        </picture>
       </a>
 
       <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
@@ -48,8 +51,8 @@
       <div class="event-accent" aria-hidden="true"></div>
       <div class="event-layout">
         <div class="event-introduction">
-          <p class="eyebrow">ISPOR 2026</p>
-          <h1 id="event-title">Hollandse<br>Avond</h1>
+          <p class="eyebrow"><span class="accent-text">ISPOR</span> 2026</p>
+          <h1 id="event-title"><span class="accent-text">Hollandse</span><br>Avond</h1>
           <p class="introduction">Join Asc Academics and the Dutch HEOR community for the Hollandse Avond at ISPOR 2026.</p>
 
           <dl class="event-details" aria-label="Event details">
@@ -69,7 +72,7 @@
         </div>
 
         <section class="registration-card" aria-labelledby="registration-title">
-          <p class="card-kicker">Reserve your place</p>
+          <p class="card-kicker">Event registration</p>
           <h2 id="registration-title">Register</h2>
           <p class="card-introduction">Please share your details to register for the event.</p>
 
@@ -122,7 +125,7 @@
       </div>
       <div class="footer-bottom">
         <a class="footer-brand" href="https://www.ascacademics.com/" aria-label="Asc Academics home">
-          <img src="assets/asc-academics-logo.svg" alt="Asc Academics" width="185" height="36">
+          <img src="assets/asc-academics-logo-horizontal.svg" alt="Asc Academics" width="287" height="45">
         </a>
         <p>Asc Academics <span id="current-year">2026</span></p>
       </div>
