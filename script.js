@@ -159,6 +159,7 @@ form.addEventListener("submit", async (event) => {
     }
 
     form.hidden = true;
+    turnstileContainer.hidden = true;
     statusRegion.classList.add("is-success");
     statusRegion.textContent = "Thank you. Your registration has been received.";
     statusRegion.setAttribute("tabindex", "-1");

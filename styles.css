@@ -309,8 +309,12 @@ h1 {
   display: none;
 }
 
+#registration-form .form-field:last-of-type {
+  margin-bottom: 0;
+}
+
 .turnstile-field {
-  margin-bottom: 1.25rem;
+  margin-top: 1.25rem;
 }
 
 .form-field label {
@@ -345,10 +349,15 @@ h1 {
   font-size: 0.88rem;
 }
 
+.field-error:empty {
+  min-height: 0;
+  margin-top: 0;
+}
+
 .register-button {
   display: inline-flex;
   min-height: 54px;
-  margin-top: 0.1rem;
+  margin-block: 0.75rem;
   padding: 0.85rem 1.45rem;
   border: 2px solid var(--asc-coral);
   border-radius: 0;
@@ -406,7 +415,7 @@ h1 {
 }
 
 .privacy-note {
-  margin: 1.4rem 0 0;
+  margin: 0;
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.5;
@@ -518,7 +527,7 @@ h1 {
   }
 
   .registration-card {
-    padding: 2rem 3rem 1.8rem;
+    padding: 2rem 3rem 1.4rem;
   }
 
   .registration-title {
@@ -530,7 +539,7 @@ h1 {
   }
 
   .form-field {
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.5rem;
   }
 
   .form-field label {
@@ -550,12 +559,12 @@ h1 {
 
   .register-button {
     min-height: 50px;
-    margin-top: 0;
+    margin-block: 0.65rem;
     padding-block: 0.65rem;
   }
 
-  .privacy-note {
-    margin-top: 0.9rem;
+  .turnstile-field {
+    margin-top: 0.7rem;
   }
 }
 
@@ -574,7 +583,7 @@ h1 {
   }
 
   .registration-card {
-    padding: 1.25rem 2.5rem 1rem;
+    padding: 1.25rem 2.5rem 0.7rem;
   }
 
   .registration-title {
@@ -610,8 +619,11 @@ h1 {
   }
 
   .privacy-note {
-    margin-top: 0.6rem;
     line-height: 1.35;
+  }
+
+  .turnstile-field {
+    margin-top: 0.5rem;
   }
 }
 
