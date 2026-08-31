@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "HK Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/HKGrotesk-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "HK Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("assets/fonts/HKGrotesk-Bold.woff2") format("woff2");
+}
+
 :root {
   --asc-blue: #0035c8;
   --asc-blue-deep: #0035a3;
