@@ -4,11 +4,11 @@ A small, static registration website for Asc Academics. The site is designed for
 
 ## Update the event details
 
-Edit the three clearly marked values in `index.html`:
+Edit the three event-detail values in `index.html`. The current values are:
 
-- `[EVENT DATE]`
-- `[EVENT TIME]`
-- `[EVENT LOCATION]`
+- Date: `Monday 9 November`
+- Time: `TBD`
+- Location: `TBD`
 
 ## Configure Formspark
 
