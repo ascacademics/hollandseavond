@@ -37,6 +37,7 @@ html {
 }
 
 body {
+  position: relative;
   min-width: 320px;
   margin: 0;
   overflow-x: clip;
@@ -46,6 +47,19 @@ body {
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  position: absolute;
+  top: -235px;
+  left: -310px;
+  z-index: 0;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: var(--asc-blue-deep);
+  content: "";
+  pointer-events: none;
 }
 
 body.menu-open {
@@ -90,7 +104,12 @@ a {
   position: relative;
   z-index: 20;
   height: 125px;
-  background: var(--asc-blue);
+  background: transparent;
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 .header-inner {
@@ -167,31 +186,7 @@ a {
   isolation: isolate;
   min-height: 720px;
   overflow: hidden;
-  background: var(--asc-blue);
-}
-
-.event-section::before {
-  position: absolute;
-  top: -360px;
-  left: -310px;
-  z-index: -1;
-  width: 620px;
-  height: 620px;
-  border-radius: 50%;
-  background: var(--asc-blue-deep);
-  content: "";
-}
-
-.event-accent {
-  position: absolute;
-  right: max(-170px, calc((100vw - var(--content-width)) / 2 - 240px));
-  bottom: -220px;
-  z-index: -1;
-  width: 650px;
-  height: 650px;
-  border-radius: 50%;
-  background: var(--asc-coral);
-  opacity: 0.98;
+  background: transparent;
 }
 
 .event-layout {
@@ -489,6 +484,10 @@ h1 {
 }
 
 @media (max-width: 1023px) {
+  body::before {
+    top: -264px;
+  }
+
   .site-header {
     height: 96px;
   }
@@ -606,23 +605,14 @@ h1 {
     padding-top: 0;
   }
 
-  .event-accent {
-    top: 160px;
-    right: -500px;
-    bottom: auto;
-    width: 590px;
-    height: 590px;
-    opacity: 0.94;
-  }
-
   .site-footer {
     padding-top: 72px;
   }
 }
 
 @media (max-width: 600px) {
-  .event-section::before {
-    top: -300px;
+  body::before {
+    top: -204px;
     left: -410px;
     width: 600px;
     height: 600px;
