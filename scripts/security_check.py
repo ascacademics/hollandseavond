@@ -82,6 +82,11 @@ def main() -> int:
         failures,
     )
     require(
+        0 <= html.find('class="privacy-note"') < html.find('id="turnstile-container"'),
+        "The Turnstile widget must follow the privacy notice in the registration card.",
+        failures,
+    )
+    require(
         read("CNAME").strip() == "hollandseavond.ascacademics.com",
         "CNAME must contain the approved GitHub Pages custom domain.",
         failures,
