@@ -42,7 +42,7 @@ body {
   margin: 0;
   overflow-x: clip;
   color: var(--white);
-  background: var(--asc-blue);
+  background: url("assets/bg_vienna.jpg") center / cover no-repeat;
   font-family: var(--body-font);
   font-size: 16px;
   line-height: 1.5;
