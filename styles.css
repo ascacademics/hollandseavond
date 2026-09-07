@@ -49,19 +49,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  position: absolute;
-  top: -235px;
-  left: -310px;
-  z-index: 0;
-  width: 620px;
-  height: 620px;
-  border-radius: 50%;
-  background: var(--asc-blue-deep);
-  content: "";
-  pointer-events: none;
-}
-
 body.menu-open {
   overflow: hidden;
 }
@@ -628,10 +615,6 @@ h1 {
 }
 
 @media (max-width: 1023px) {
-  body::before {
-    top: -264px;
-  }
-
   .site-header {
     height: 96px;
   }
@@ -755,13 +738,6 @@ h1 {
 }
 
 @media (max-width: 600px) {
-  body::before {
-    top: -204px;
-    left: -410px;
-    width: 600px;
-    height: 600px;
-  }
-
   .event-layout {
     padding-bottom: 64px;
   }
