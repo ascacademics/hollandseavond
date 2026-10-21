@@ -7,8 +7,8 @@ A small, static registration website for Asc Academics. The site is designed for
 Edit the three event-detail values in `index.html`. The current values are:
 
 - Date: `Monday 9 November`
-- Time: `TBD`
-- Location: `TBD`
+- Time: `19:00`
+- Location: `Luftburg Kolarik in Prater, Prater 128, 1020 Wien, Austria`
 
 ## Configure Formspark
 
