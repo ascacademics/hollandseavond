@@ -88,6 +88,12 @@ def main() -> int:
         ("styles.css", stylesheet),
     ):
         require("http://" not in content, f"Insecure URL found in {relative_path}.", failures)
+        require(
+            re.search(r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}", content, re.IGNORECASE)
+            is None,
+            f"Plain-text email address exposed in {relative_path}.",
+            failures,
+        )
 
     for dangerous_sink in (
         "innerHTML",

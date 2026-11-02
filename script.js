@@ -6,6 +6,14 @@ let lastFocusedElement = null;
 
 year.textContent = new Date().getFullYear().toString();
 
+// Discourage basic address harvesting while preserving a standard email link.
+const contactEmail = document.querySelector("#contact-email");
+if (contactEmail) {
+  const address = atob("amFzbWlqbi5iZWVrbWFuQGFzY2FjYWRlbWljcy5jb20=");
+  contactEmail.href = `mailto:${address}`;
+  contactEmail.textContent = address;
+}
+
 function closeMenu({ restoreFocus = true } = {}) {
   navigation.classList.remove("is-open");
   menuToggle.setAttribute("aria-expanded", "false");
