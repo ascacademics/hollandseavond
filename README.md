@@ -16,6 +16,10 @@ Registration closed on 2 November 2026. The page displays a closure notice and r
 
 The repository does not manage the external Formspark account or its previously collected registrations. See `SECURITY_CONFIGURATION.md` for hosting controls and the historical registration configuration.
 
+## Contact email
+
+The contact link is assembled by `script.js` from an encoded address to discourage basic email harvesting. JavaScript is required to display the address and activate the link; the page explains this when JavaScript is disabled. This is obfuscation only: bots that execute JavaScript can still read the address, and earlier publication or Git history is unaffected.
+
 ## Run locally
 
 From the repository root:
