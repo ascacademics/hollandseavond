@@ -22,26 +22,37 @@ def main() -> int:
     failures: list[str] = []
 
     require(
-        re.search(
-            r'<form[^>]+action="https://submit-form\.com/[A-Za-z0-9_-]+"[^>]+method="post"',
-            html,
+        re.search(r"<(?:form|input|textarea|select)\b", html, re.IGNORECASE) is None,
+        "The closed event page must not contain a form or registration fields.",
+        failures,
+    )
+    require(
+        re.search(r'<button\b[^>]*type="submit"', html, re.IGNORECASE) is None,
+        "The closed event page must not contain a submit button.",
+        failures,
+    )
+    require(
+        re.search(r"<h[1-6]\b[^>]*>Registration closed</h[1-6]>", html) is not None,
+        "A visible registration-closed heading is required.",
+        failures,
+    )
+    for name in ("description", "og:description"):
+        description = re.search(
+            rf'<meta (?:name|property)="{name}" content="([^"]+)"', html
         )
-        is not None,
-        "The registration form must have an HTTPS Formspark action and POST fallback.",
-        failures,
-    )
-    require('name="_honeypot"' in html, "The Formspark honeypot field is missing.", failures)
-    require(
-        "_honeypot: form.elements._honeypot.value" in javascript,
-        "The honeypot value is missing from the AJAX payload.",
-        failures,
-    )
-    require(
-        re.search(r"\.form-field--honeypot\s*\{[^}]*display:\s*none", stylesheet, re.DOTALL)
-        is not None,
-        "The honeypot field is not hidden.",
-        failures,
-    )
+        require(
+            description is not None
+            and "registration" in description.group(1).lower()
+            and "closed" in description.group(1).lower(),
+            f"The {name} metadata must state that registration is closed.",
+            failures,
+        )
+    for integration in ("submit-form.com", "challenges.cloudflare.com", "registration-form"):
+        require(
+            integration not in html and integration not in javascript,
+            f"The closed event page must not include the registration integration: {integration}",
+            failures,
+        )
 
     csp_match = re.search(
         r'<meta http-equiv="Content-Security-Policy" content="([^"]+)"', html
@@ -52,38 +63,17 @@ def main() -> int:
         for directive in (
             "default-src 'none'",
             "base-uri 'none'",
-            "connect-src https://submit-form.com",
-            "form-action https://submit-form.com",
+            "connect-src 'none'",
+            "form-action 'none'",
             "object-src 'none'",
-            "script-src 'self' https://challenges.cloudflare.com",
-            "frame-src https://challenges.cloudflare.com",
+            "script-src 'self'",
+            "frame-src 'none'",
         ):
             require(directive in csp, f"CSP directive is missing: {directive}", failures)
 
     require(
         '<meta name="referrer" content="no-referrer">' in html,
         "The no-referrer policy is missing.",
-        failures,
-    )
-    require(
-        "const FORM_ENDPOINT = form.action;" in javascript,
-        "AJAX submission must use the form's configured endpoint.",
-        failures,
-    )
-    require(
-        re.search(r'const TURNSTILE_SITE_KEY = "0x[A-Za-z0-9_-]+";', javascript) is not None,
-        "The Turnstile public site key is missing or invalid.",
-        failures,
-    )
-    require(
-        'action: "registration"' in javascript
-        and 'payload["cf-turnstile-response"] = turnstileToken;' in javascript,
-        "The Turnstile action or token submission support is missing.",
-        failures,
-    )
-    require(
-        0 <= html.find('class="privacy-note"') < html.find('id="turnstile-container"'),
-        "The Turnstile widget must follow the privacy notice in the registration card.",
         failures,
     )
     require(

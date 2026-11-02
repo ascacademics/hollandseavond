@@ -13,7 +13,13 @@ In **Repository settings → Pages**:
 
 GitHub Pages does not support repository-configured response headers. The meta Content Security Policy and no-referrer policy in `index.html` are therefore the available repository-level controls. Do not use this site to collect passwords, payment information, identity documents, health information, or other sensitive data.
 
-## Formspark
+## Historical registration configuration
+
+Registration closed on 2 November 2026. The website no longer includes a registration form, submission code, or Turnstile widget. Its Content Security Policy blocks form submissions, connections, and frames. The external Formspark account and previously collected registrations are managed separately; this website change does not deactivate the external endpoint or delete existing data.
+
+The Formspark and Turnstile notes below describe the pre-closure configuration. They are retained for reference and do not instruct a new registration launch.
+
+### Formspark
 
 In the form's **Settings → Spam protection**:
 
@@ -21,11 +27,11 @@ In the form's **Settings → Spam protection**:
 - leave custom spam words empty until observed spam supports specific terms; and
 - keep the challenge disabled until the Turnstile frontend has been deployed and checked on the live hostname.
 
-The standard `_honeypot` field is already present in the HTML and AJAX payload. Confirm or remove any unconfirmed notification recipients before launch.
+The standard `_honeypot` field was present in the HTML and AJAX payload. Confirm or remove any unconfirmed notification recipients before any future launch.
 
-## Turnstile
+### Turnstile
 
-Turnstile and Formspark's Turnstile integration are available without a paid plan. The frontend is configured with site key `0x4AAAAAAEjKUsDVsmkEpE3R` and action `registration`.
+The former frontend used Turnstile site key `0x4AAAAAAEjKUsDVsmkEpE3R` and action `registration`.
 
 1. In Cloudflare, confirm that the existing widget is **Managed** and permits `hollandseavond.ascacademics.com`.
 2. Deploy and verify that the widget loads on `https://hollandseavond.ascacademics.com/`.
@@ -34,7 +40,7 @@ Turnstile and Formspark's Turnstile integration are available without a paid pla
 5. Make one genuine test registration and confirm that it arrives.
 6. Attempt a second submission with an expired or missing widget response and confirm that Formspark rejects it.
 
-The Content Security Policy permits only the Cloudflare origins required for the widget. Formspark performs the server-side Siteverify call; GitHub Pages must never receive or expose the secret.
+The former Content Security Policy permitted the Cloudflare origins required for the widget. Formspark performed the server-side Siteverify call; GitHub Pages must never receive or expose the secret.
 
 ## Protect `main`
 

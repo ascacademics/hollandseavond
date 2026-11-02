@@ -1,6 +1,6 @@
-# Hollandse Avond at ISPOR 2026
+# Hollandse Avond at ISPOR Europe 2026
 
-A small, static registration website for Asc Academics. The site is designed for GitHub Pages and has no build step or runtime dependencies.
+A small, static event website for Asc Academics. The site is designed for GitHub Pages and has no build step or runtime dependencies.
 
 ## Update the event details
 
@@ -10,19 +10,11 @@ Edit the three event-detail values in `index.html`. The current values are:
 - Time: `19:00`
 - Location: `Luftburg Kolarik in Prater, Prater 128, 1020 Wien, Austria`
 
-## Configure Formspark
+## Registration status
 
-Create the form in Formspark, then replace the form action in `index.html`:
+Registration closed on 2 November 2026. The page displays a closure notice and retains the event details for registered guests. The registration form, submission code, and Turnstile widget have been removed; the Content Security Policy blocks form submissions, connections, and frames.
 
-```html
-<form id="registration-form" action="https://submit-form.com/FORM_ID" method="post" novalidate>
-```
-
-Use the complete Formspark endpoint. The JavaScript reads this action for AJAX submission, while the form uses the same action as a POST fallback so that registration details are not exposed in a URL if JavaScript is unavailable. Do not commit private credentials. Until a valid endpoint is configured, the site prevents AJAX submission.
-
-The form includes Formspark's `_honeypot` field as a lightweight bot control. Keep Formspark's automatic spam filtering enabled. Turnstile is configured with its public site key and the `registration` action; AJAX submissions include the generated `cf-turnstile-response` token. Never add the Turnstile secret key to this repository.
-
-See `SECURITY_CONFIGURATION.md` for the required Formspark, Turnstile, GitHub Pages, and repository-ruleset settings.
+The repository does not manage the external Formspark account or its previously collected registrations. See `SECURITY_CONFIGURATION.md` for hosting controls and the historical registration configuration.
 
 ## Run locally
 
@@ -60,7 +52,7 @@ The `CNAME` file in this repository must continue to contain exactly `hollandsea
 
 ## Privacy and tracking
 
-The site stores no registration details in browser storage, sets no cookies, and includes no analytics or advertising trackers. Submitted values are sent only to the configured Formspark endpoint.
+The site no longer collects or submits registration details. It stores no registration details in browser storage, sets no cookies, and includes no analytics or advertising trackers.
 
 ## Security headers
 
